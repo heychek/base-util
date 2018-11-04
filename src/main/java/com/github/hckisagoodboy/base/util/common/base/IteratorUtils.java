@@ -1,4 +1,4 @@
-package com.github.hckisagoodboy.base.util.common.util;
+package com.github.hckisagoodboy.base.util.common.base;
 
 import com.github.hckisagoodboy.base.util.common.exception.UnExpectedException;
 import java.util.Iterator;

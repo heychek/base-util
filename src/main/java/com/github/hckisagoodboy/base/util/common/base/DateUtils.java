@@ -1,4 +1,4 @@
-package com.github.hckisagoodboy.base.util.common.util;
+package com.github.hckisagoodboy.base.util.common.base;
 
 import java.text.DateFormat;
 import java.text.ParseException;

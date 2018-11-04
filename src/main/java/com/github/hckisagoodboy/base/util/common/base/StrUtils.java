@@ -1,4 +1,4 @@
-package com.github.hckisagoodboy.base.util.common.util;
+package com.github.hckisagoodboy.base.util.common.base;
 
 import java.io.UnsupportedEncodingException;
 import org.springframework.util.StringUtils;

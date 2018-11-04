@@ -1,4 +1,4 @@
-package com.github.hckisagoodboy.base.util.common.util;
+package com.github.hckisagoodboy.base.util.common.base;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.hckisagoodboy.base.util.common.lambda.BooleanExecutor;
