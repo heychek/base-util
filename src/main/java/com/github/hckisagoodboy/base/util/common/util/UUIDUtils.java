@@ -4,7 +4,7 @@ import java.util.UUID;
 
 /**
  * @author hck
- * @date 2018/11/3 11:33 PM
+ * 2018/11/3 11:33 PM
  */
 public class UUIDUtils {
   private UUIDUtils() {}

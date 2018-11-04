@@ -2,7 +2,7 @@ package com.github.hckisagoodboy.base.util.common.request;
 
 /**
  * @author hck
- * @date 2018/10/29 3:46 PM
+ * 2018/10/29 3:46 PM
  */
 public enum ErrCode {
   // 请求返回码枚举类

@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 
 /**
  * @author hck
- * @date 2018/10/29 12:11 PM
+ * 2018/10/29 12:11 PM
  */
 public class LogUtils {
   private LogUtils() {}

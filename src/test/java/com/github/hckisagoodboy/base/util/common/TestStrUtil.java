@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author hck
- * @date 2018/11/2 1:37 PM
+ * 2018/11/2 1:37 PM
  */
 public class TestStrUtil {
 

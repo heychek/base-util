@@ -2,7 +2,7 @@ package com.github.hckisagoodboy.base.util.common.request;
 
 /**
  * @author hck
- * @date 2018/10/29 3:46 PM
+ * 2018/10/29 3:46 PM
  */
 public class ResHandler<T> {
   private static final String SUCCESS_MSG = "success";

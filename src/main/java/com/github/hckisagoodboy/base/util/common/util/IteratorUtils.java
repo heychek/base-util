@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  * @author hck
- * @date 2018/11/2 4:57 PM
+ * 2018/11/2 4:57 PM
  */
 public class IteratorUtils {
 

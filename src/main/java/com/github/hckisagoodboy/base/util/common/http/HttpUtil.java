@@ -1,7 +1,5 @@
 package com.github.hckisagoodboy.base.util.common.http;
 
-import com.github.hckisagoodboy.base.util.common.base.BaseUtil;
-import com.github.hckisagoodboy.base.util.common.util.StrUtils;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -27,10 +25,8 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Description: nbugs-device-access-center
- * author: 洪天才
- * Date: 2018/9/28
- * Time: 下午3:59
+ * @author hck
+ * 2018/9/28 下午3:59
  */
 public class HttpUtil {
   private static final String DEFAULT_CHARSET = "UTF-8";

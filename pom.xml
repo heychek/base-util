@@ -6,11 +6,29 @@
 
   <groupId>com.github.hckisagoodboy</groupId>
   <artifactId>base-util</artifactId>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.1.0-RELEASE</version>
   <packaging>jar</packaging>
 
   <name>util</name>
   <description>base util</description>
+  <url>https://git@github.com:hckisagoodboy/base-util.git</url>
+  <licenses>
+    <license>
+      <name>kevin License</name>
+      <url>https://github.com/hckisagoodboy/base-util/blob/master/README.md</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>kevin</name>
+      <email>kevinhck@qq.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git@github.com:hckisagoodboy/base-util.git</connection>
+    <developerConnection>scm:git:git@github.com:hckisagoodboy/base-util.git</developerConnection>
+    <url>git@github.com:hckisagoodboy/base-util.git</url>
+  </scm>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -73,25 +91,44 @@
     </dependency>
   </dependencies>
 
-  <!--<distributionManagement>-->
-    <!--<repository>-->
-      <!--<id>rdc-releases</id>-->
-      <!--<url>https://repo.rdc.aliyun.com/repository/35971-release-lsbFq0/</url>-->
-    <!--</repository>-->
-    <!--<snapshotRepository>-->
-      <!--<id>rdc-snapshots</id>-->
-      <!--<url>https://repo.rdc.aliyun.com/repository/35971-snapshot-ZmvChd/</url>-->
-    <!--</snapshotRepository>-->
-  <!--</distributionManagement>-->
-
   <distributionManagement>
     <repository>
-      <id>kevin-snapshots</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <id>rdc-releases</id>
+      <url>https://repo.rdc.aliyun.com/repository/35971-release-lsbFq0/</url>
     </repository>
     <snapshotRepository>
-      <id>kevin-releases</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <id>rdc-snapshots</id>
+      <url>https://repo.rdc.aliyun.com/repository/35971-snapshot-ZmvChd/</url>
     </snapshotRepository>
   </distributionManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.3</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

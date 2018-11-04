@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * @author hck
- * @date 2018/11/2 1:28 PM
+ * 2018/11/2 1:28 PM
  */
 public class StrUtils {
 

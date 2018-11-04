@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * @author hck
- * @date 2018/11/3 10:28 PM
+ * 2018/11/3 10:28 PM
  */
 public class DateUtils {
 
@@ -126,6 +126,7 @@ public class DateUtils {
    *
    * @param date1 日期字符串 1
    * @param date2 日期字符串 2
+   * @param pattern 日期字符串格式
    * @return 如果日期字符串 {@code date1} 早于日期字符串 {@code date2}, 则返回 -1;
    * <p>如果日期字符串 {@code date2} 早于日期字符串 {@code date1}, 则返回 1;
    * <p>如果日期字符串 {@code date1} 等于日期字符串 {@code date2}, 则返回 0
@@ -165,6 +166,7 @@ public class DateUtils {
   /**
    * <p>根据传入的日期格式获取当前的日期字符串</p>
    *
+   * @param pattern 需要转换的日期字符串格式
    * @return 当前的日期字符串
    */
   public static String currTimeStr(String pattern) {

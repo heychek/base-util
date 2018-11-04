@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * @author hck
- * @date 2018/10/30 1:34 PM
+ * 2018/10/30 1:34 PM
  */
 @Data
 public class Param<T> {

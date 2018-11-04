@@ -9,7 +9,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 /**
  * @author hck
- * @date 2018/11/2 3:19 PM
+ * 2018/11/2 3:19 PM
  */
 public class PropertiesUtils {
 
@@ -32,6 +32,7 @@ public class PropertiesUtils {
    * <p>根据 {@code path} 和 指定编码 {@code encode} 获取 <code>PropertiesConfiguration</code> 对象</p>
    *
    * @param path 相对于根目录的文件路径
+   * @param encode 文件编码
    * @return PropertiesConfiguration 对象
    * @throws ConfigurationException 找不到该文件时抛出异常
    */
@@ -78,6 +79,7 @@ public class PropertiesUtils {
    *
    * @param path 相对于根目录的文件路径
    * @param idx 指定位置, 即第几行
+   * @param value 需要被设置的值
    * @throws ConfigurationException 找不到该文件时抛出异常
    * @throws UnExpectedException 指定位置小于 0 或其数值大于该配置文件配置条数, 则抛出该异常
    */
@@ -94,6 +96,7 @@ public class PropertiesUtils {
    * <p>根据 {@code path} 设置该文件第 1 行配置的值为 {@code value}</p>
    *
    * @param path 相对于根目录的文件路径
+   * @param value 需要被设置的值
    * @throws ConfigurationException 找不到该文件时抛出异常
    * @throws UnExpectedException 该配置文件配置条数小于 1, 则抛出该异常
    */

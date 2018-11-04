@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author hck
- * @date 2018/11/3 11:11 PM
+ * 2018/11/3 11:11 PM
  */
 public class ListUtils {
   private ListUtils() {}

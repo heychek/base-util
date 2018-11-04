@@ -19,16 +19,12 @@ import java.util.jar.JarFile;
  */
 public class PackageUtil {
 
-  public static void main(String[] args) throws Exception {
-    String packageName = "com.nbugs.device.common.util.validate.annotation";
-    List<Class<?>> classes = getClasses(packageName, false, false);
-    if (classes != null) {
-      for (Class<?> clazz : classes) {
-        System.out.println(clazz.getName() + " : " + clazz.getSimpleName());
-      }
-    }
-  }
-
+  /**
+   * <p>获取上一层包名</p>
+   *
+   * @param clazz 需要被获取的包名的类的 <code>Class</code> 对象
+   * @return 获取到的上一层包名
+   */
   public static String getUpperPackageName(Class<?> clazz) {
     String currPackage = clazz.getPackage().getName();
     int i = currPackage.lastIndexOf(".");
@@ -36,7 +32,8 @@ public class PackageUtil {
   }
 
   /**
-   * 获取某包下（包括该包的所有子包）所有类
+   * <p>获取某包下（包括该包的所有子包）所有类</p>
+   *
    * @param packageName 包名
    * @return 类的完整名称
    */
@@ -45,7 +42,8 @@ public class PackageUtil {
   }
 
   /**
-   * 获取某包下所有类
+   * <p>获取某包下所有类</p>
+   *
    * @param packageName 包名
    * @param childPackage 是否遍历子包
    * @return 类的完整名称
@@ -69,7 +67,8 @@ public class PackageUtil {
   }
 
   /**
-   * 从项目文件获取某包下所有类
+   * <p>从项目文件获取某包下所有类</p>
+   *
    * @param filePath 文件路径
    * @param className 类名集合
    * @param childPackage 是否遍历子包
@@ -98,7 +97,8 @@ public class PackageUtil {
   }
 
   /**
-   * 从jar获取某包下所有类
+   * <p>从jar获取某包下所有类</p>
+   *
    * @param jarPath jar文件路径
    * @param childPackage 是否遍历子包
    * @return 类的完整名称
@@ -142,7 +142,8 @@ public class PackageUtil {
   }
 
   /**
-   * 从所有jar中搜索该包，并获取该包下所有类
+   * <p>从所有jar中搜索该包，并获取该包下所有类</p>
+   *
    * @param urls URL集合
    * @param packagePath 包路径
    * @param childPackage 是否遍历子包
@@ -166,7 +167,12 @@ public class PackageUtil {
   }
 
   /**
-   * 从包package中获取所有的Class
+   * <p>从包package中获取所有的Class</p>
+   *
+   * @param packageName 包名
+   * @param childPackage 子包
+   * @param childClass 子类
+   * @return 获取的所有的Class对象
    */
   public static List<Class<?>> getClasses(String packageName, boolean childPackage, boolean childClass){
 
@@ -260,10 +266,12 @@ public class PackageUtil {
 
   /**
    * 以文件的形式来获取包下的所有Class
-   * @param packageName
-   * @param packagePath
-   * @param recursive
-   * @param classes
+   * @param packageName 包名
+   * @param packagePath 包路径
+   * @param recursive 是否
+   * @param classes class 对象
+   * @param childPackage 子包
+   * @param childClass 子类
    */
   public static void findAndAddClassesInPackageByFile(String packageName, String packagePath, final boolean recursive, List<Class<?>> classes, boolean childPackage, boolean childClass){
     //获取此包的目录 建立一个File

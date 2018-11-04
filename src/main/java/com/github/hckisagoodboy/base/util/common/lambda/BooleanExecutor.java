@@ -2,7 +2,7 @@ package com.github.hckisagoodboy.base.util.common.lambda;
 
 /**
  * @author hck
- * @date 2018/11/4 11:40 AM
+ * 2018/11/4 11:40 AM
  */
 public interface BooleanExecutor<T> {
 

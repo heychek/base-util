@@ -5,7 +5,7 @@ import com.github.hckisagoodboy.base.util.common.lambda.BooleanExecutor;
 
 /**
  * @author hck
- * @date 2018/11/3 11:50 PM
+ * 2018/11/3 11:50 PM
  */
 public class ObjUtils {
   private ObjUtils() {}
