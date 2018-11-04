@@ -1,6 +1,7 @@
 package com.github.hckisagoodboy.base.util.common.http;
 
 import com.github.hckisagoodboy.base.util.common.base.BaseUtil;
+import com.github.hckisagoodboy.base.util.common.util.StrUtils;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -23,6 +24,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.CharArrayBuffer;
 import org.apache.http.util.EntityUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * Description: nbugs-device-access-center
@@ -138,7 +140,7 @@ public class HttpUtil {
   }
 
   public static String addMapToUrl(String url, Map<String, String> map) {
-    if (BaseUtil.isStrNull(url) || map.isEmpty()) {
+    if (StringUtils.hasText(url) || map.isEmpty()) {
       return url;
     }
     String conn = url.contains("?") ? "&" : "?";
