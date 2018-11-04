@@ -44,10 +44,11 @@
       <artifactId>lombok</artifactId>
       <version>1.16.12</version>
     </dependency>
+    <!-- 1.2.31 前有个安全漏洞 -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
-      <version>LATEST</version>
+      <version>[1.2.31,)</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
