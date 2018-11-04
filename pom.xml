@@ -73,14 +73,25 @@
     </dependency>
   </dependencies>
 
+  <!--<distributionManagement>-->
+    <!--<repository>-->
+      <!--<id>rdc-releases</id>-->
+      <!--<url>https://repo.rdc.aliyun.com/repository/35971-release-lsbFq0/</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+      <!--<id>rdc-snapshots</id>-->
+      <!--<url>https://repo.rdc.aliyun.com/repository/35971-snapshot-ZmvChd/</url>-->
+    <!--</snapshotRepository>-->
+  <!--</distributionManagement>-->
+
   <distributionManagement>
     <repository>
-      <id>rdc-releases</id>
-      <url>https://repo.rdc.aliyun.com/repository/35971-release-lsbFq0/</url>
+      <id>kevin-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
     <snapshotRepository>
-      <id>rdc-snapshots</id>
-      <url>https://repo.rdc.aliyun.com/repository/35971-snapshot-ZmvChd/</url>
+      <id>kevin-releases</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 </project>

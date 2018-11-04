@@ -152,4 +152,22 @@ public class DateUtils {
     return (compare(start, time, pattern) == -1 || compare(start, time, pattern) == 0)
         && compare(end, time, pattern) == 1;
   }
+
+  /**
+   * <p>根据默认的日期格式获取当前的日期字符串</p>
+   *
+   * @return 当前的日期字符串
+   */
+  public static String currTimeStrDefaultPattern() {
+    return currTimeStr(DEFAULT_PATTERN);
+  }
+
+  /**
+   * <p>根据传入的日期格式获取当前的日期字符串</p>
+   *
+   * @return 当前的日期字符串
+   */
+  public static String currTimeStr(String pattern) {
+    return new SimpleDateFormat(pattern).format(new Date());
+  }
 }

@@ -1,7 +1,6 @@
 package com.github.hckisagoodboy.base.util.common.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.hckisagoodboy.base.util.common.base.BaseUtil;
 import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.CodeSignature;
@@ -57,7 +56,7 @@ public class LogUtils {
     String paramNames = Arrays.toString(((CodeSignature) jp.getSignature()).getParameterNames());
     String paramArgs = Arrays.toString(jp.getArgs());
     String returnValue = JSONObject.toJSONString(proceedRes);
-    String time = BaseUtil.getCurrTime();
+    String time = DateUtils.currTimeStrDefaultPattern();
     log.info("className = {},  methodName = {}, paramNames = {}, "
             + "paramArgs = {}, returnValue = {}, time = {}",
         className, methodName, paramNames, paramArgs, returnValue, time);
