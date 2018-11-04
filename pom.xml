@@ -6,7 +6,7 @@
 
   <groupId>com.github.hckisagoodboy</groupId>
   <artifactId>base-util</artifactId>
-  <version>1.1.1-RELEASE</version>
+  <version>1.1.2-RELEASE</version>
   <packaging>jar</packaging>
 
   <name>util</name>
@@ -104,6 +104,7 @@
 
   <build>
     <plugins>
+      <!-- 为了使打包的 jar 包有注释 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>

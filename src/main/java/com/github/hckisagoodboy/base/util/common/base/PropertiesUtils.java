@@ -1,6 +1,5 @@
 package com.github.hckisagoodboy.base.util.common.base;
 
-import com.github.hckisagoodboy.base.util.common.exception.UnExpectedException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -81,10 +80,10 @@ public class PropertiesUtils {
    * @param idx 指定位置, 即第几行
    * @param value 需要被设置的值
    * @throws ConfigurationException 找不到该文件时抛出异常
-   * @throws UnExpectedException 指定位置小于 0 或其数值大于该配置文件配置条数, 则抛出该异常
+   * @throws IndexOutOfBoundsException 指定位置小于 0 或其数值大于该配置文件配置条数, 则抛出该异常
    */
   public static void setValueByPosition(String path, int idx, String value)
-      throws ConfigurationException, UnExpectedException {
+      throws ConfigurationException {
     PropertiesConfiguration props = load(path);
     props.setAutoSave(true);
     Iterator<String> it = props.getKeys();
@@ -98,10 +97,10 @@ public class PropertiesUtils {
    * @param path 相对于根目录的文件路径
    * @param value 需要被设置的值
    * @throws ConfigurationException 找不到该文件时抛出异常
-   * @throws UnExpectedException 该配置文件配置条数小于 1, 则抛出该异常
+   * @throws IndexOutOfBoundsException 该配置文件配置条数小于 1, 则抛出该异常
    */
   public static void setFirstValue(String path, String value)
-      throws ConfigurationException, UnExpectedException {
+      throws ConfigurationException {
     setValueByPosition(path, 1, value);
   }
 
