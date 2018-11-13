@@ -36,4 +36,24 @@ public class ListUtils {
     }
     return true;
   }
+
+  /**
+   * <p>判断传入的所有列表是否有含有其值为 {@code null} 的</p>
+   *
+   * @param lists 所有传入的 {@code List} 对象参数
+   * @return 返回值
+   */
+  public static boolean hasNull(List... lists) {
+    return ObjUtils.hasInValidElement(ObjUtils::isNull, lists);
+  }
+
+  /**
+   * <p>判断传入的所有列表是否有含有其值为 {@code null} 或 {@code size()} 为 0 的</p>
+   *
+   * @param lists 所有传入的 {@code List} 对象参数
+   * @return 返回值
+   */
+  public static boolean hasEmpty(List... lists) {
+    return ObjUtils.hasInValidElement(ListUtils::isEmpty, lists);
+  }
 }
