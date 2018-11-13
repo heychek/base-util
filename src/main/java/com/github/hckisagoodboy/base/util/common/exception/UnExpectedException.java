@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UnExpectedException extends Exception {
+
+  private static final long serialVersionUID = -5043000680954387922L;
+
   public UnExpectedException(String message) {
     super(message);
   }
