@@ -196,11 +196,8 @@ public class HttpUtils {
 
   /**
    * <p>将传入的 {@code key} 和 {@code value} 结合成 {@code key=value} 的 url 参数形式</p>
-   * <p>
-   * <code>
-   * toParamStr("key", "value") --> "key=value" toParamStr("page", "3") --> "page=3"
-   * </code>
-   * </p>
+   * <p>toParamStr("key", "value") = "key=value"</p>
+   * <p>toParamStr("page", "3") = "page=3"</p>
    *
    * @param key 参数名
    * @param value 参数值
