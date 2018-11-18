@@ -19,8 +19,8 @@ public class LogUtils {
    * @param log 日志对象
    * @param e 异常对象
    */
-  public static void logErr(Logger log, Exception e) {
-    logErr(log, e, "");
+  public static void logThrowable(Logger log, Throwable e) {
+    logThrowable(log, e, "");
   }
 
   /**
@@ -30,7 +30,7 @@ public class LogUtils {
    * @param e 异常对象
    * @param tip 错误提示
    */
-  public static void logErr(Logger log, Exception e, String tip) {
+  public static void logThrowable(Logger log, Throwable e, String tip) {
     log.error("occur an err, tip = {}, e = {}, msg = {}, stackTrace = {}",
         tip, e, e.getMessage(), e.getStackTrace());
   }

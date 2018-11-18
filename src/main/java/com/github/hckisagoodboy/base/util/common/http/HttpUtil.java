@@ -110,8 +110,9 @@ public class HttpUtil {
    * @param url 请求地址
    * @param jsonString json字符串
    * @return 响应
+   * @throws IOException 执行失败抛出异常
    */
-  public static String postJson(String url, String jsonString) {
+  public static String postJson(String url, String jsonString) throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
     HttpPost post = new HttpPost(url);
     post.addHeader("Content-type", "application/json; charset=utf-8");
@@ -124,15 +125,13 @@ public class HttpUtil {
       post.setEntity(s);
 
       response = httpClient.execute(post);
-      if (isResponseOk(response)) {
-        return entityToString(response.getEntity());
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
+//      if (isResponseOk(response)) {
+//        return entityToString(response.getEntity());
+//      }
+      return entityToString(response.getEntity());
     } finally {
       closeHttpClient(httpClient, response);
     }
-    return null;
   }
 
   public static String addMapToUrl(String url, Map<String, String> map) {

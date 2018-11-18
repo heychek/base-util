@@ -11,4 +11,5 @@ public class Const {
   public static final String FALSE = "0";
   public static final String NORMAL_DATE_FMT = "yyyy-MM-dd HH:mm:ss";
   public static final String DEFAULT_ENCODE = "UTF-8";
+  public static final String DEFAULT_PACKAGE_SEPARATOR = ".";
 }

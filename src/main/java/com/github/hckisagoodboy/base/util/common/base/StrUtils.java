@@ -1,13 +1,12 @@
 package com.github.hckisagoodboy.base.util.common.base;
 
 import com.github.hckisagoodboy.base.util.common.lambda.CharExecutor;
+import com.github.hckisagoodboy.base.util.common.lambda.VoidTwoParamExecutor;
 import java.io.UnsupportedEncodingException;
-import java.util.function.Function;
 import org.springframework.util.StringUtils;
 
 /**
- * @author hck
- * 2018/11/2 1:28 PM
+ * @author hck 2018/11/2 1:28 PM
  */
 public class StrUtils {
 
@@ -173,6 +172,7 @@ public class StrUtils {
 
   /**
    * <p>判断传入的字符串 {@code str} 长度是否大于传入的值 {@code len}</p>
+   *
    * @param str 传入的字符串
    * @param len 该字符串长度的比较值
    * @return 字符串为 null 时返回 {@code false}, 正常情况下返回长度比较结果
@@ -186,6 +186,7 @@ public class StrUtils {
 
   /**
    * <p>判断传入的字符串 {@code str} 长度是否小于等于传入的值 {@code len}</p>
+   *
    * @param str 传入的字符串
    * @param len 该字符串长度的比较值
    * @return 字符串为 null 时返回 {@code true}, 正常情况下返回长度比较结果
@@ -276,6 +277,76 @@ public class StrUtils {
       }
     }
     return false;
+  }
+
+  /**
+   * <p>字符串长度不足左侧使用字符 {@code 0} 补长度</p>
+   *
+   * @param source 源字符串
+   * @param needLen 需要的字符串长度
+   * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
+   */
+  public static String addZeroLeftIfLenNotEnough(String source, int needLen) {
+    return addCharIfLenNotEnough(source, '0', needLen, (StringBuilder sb, String str) -> {
+      sb.insert(0, str);
+    });
+  }
+
+  /**
+   * <p>字符串长度不足右侧使用字符 {@code 0} 补长度</p>
+   *
+   * @param source 源字符串
+   * @param needLen 需要的字符串长度
+   * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
+   */
+  public static String addZeroRightIfLenNotEnough(String source, int needLen) {
+    return addCharIfLenNotEnough(source, '0', needLen, StringBuilder::append);
+  }
+
+  /**
+   * <p>字符串长度不足左侧补长度</p>
+   *
+   * @param source 源字符串
+   * @param addChar 用以补长度的字符
+   * @param needLen 需要的字符串长度
+   * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
+   */
+  public static String addLeftIfLenNotEnough(String source, char addChar, int needLen) {
+    return addCharIfLenNotEnough(source, addChar, needLen, (StringBuilder sb, String str) -> {
+      sb.insert(0, str);
+    });
+  }
+
+  /**
+   * <p>字符串长度不足右侧补长度</p>
+   *
+   * @param source 源字符串
+   * @param addChar 用以补长度的字符
+   * @param needLen 需要的字符串长度
+   * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
+   */
+  public static String addRightIfLenNotEnough(String source, char addChar, int needLen) {
+    return addCharIfLenNotEnough(source, addChar, needLen, StringBuilder::append);
+  }
+
+  /**
+   * <p>字符串长度不足补齐方法</p>
+   *
+   * @param source 源字符串
+   * @param addChar 用以补长度的字符
+   * @param needLen 需要的字符串长度
+   * @param executor 补齐方式
+   * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
+   */
+  public static String addCharIfLenNotEnough(
+      String source, char addChar, int needLen, VoidTwoParamExecutor<StringBuilder, String> executor) {
+    int strLen = source.length();
+    StringBuilder res = new StringBuilder(source);
+    while (strLen < needLen) {
+      executor.execute(res, String.valueOf(addChar));
+      strLen = res.length();
+    }
+    return res.toString();
   }
 
   /**
