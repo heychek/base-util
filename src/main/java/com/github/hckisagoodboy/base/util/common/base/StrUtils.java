@@ -13,6 +13,160 @@ public class StrUtils {
   public StrUtils() {}
 
   public static final String EMPTY_STRING = "";
+  public static final char WHITE_SPACE = ' ';
+  public static final char ZERO = '0';
+
+  /**
+   * <P>对长度不足的字符串使用字符 {@code 0} 进行左补齐
+   * <p>源字符串可以为 {@code null}
+   *
+   * @param str 源字符串
+   * @param len 字符串需要的长度
+   * @return 补齐后的字符串
+   */
+  public static String fillLeadingZero(String str, int len) {
+    return fillCharacter(str, len, ZERO, true);
+  }
+
+  /**
+   * <P>对长度不足的字符串使用字符 {@code 0} 进行右补齐
+   * <p>源字符串可以为 {@code null}
+   *
+   * @param str 源字符串
+   * @param len 字符串需要的长度
+   * @return 补齐后的字符串
+   */
+  public static String fillTailingZero(String str, int len) {
+    return fillCharacter(str, len, ZERO, false);
+  }
+
+  /**
+   * <P>对长度不足的字符串使用空格进行左补齐
+   * <p>源字符串可以为 {@code null}
+   *
+   * @param str 源字符串
+   * @param len 字符串需要的长度
+   * @return 补齐后的字符串
+   */
+  public static String fillLeadingBlank(String str, int len) {
+    return fillCharacter(str, len, WHITE_SPACE, true);
+  }
+
+  /**
+   * <P>对长度不足的字符串使用空格进行右补齐
+   * <p>源字符串可以为 {@code null}
+   *
+   * @param str 源字符串
+   * @param len 字符串需要的长度
+   * @return 补齐后的字符串
+   */
+  public static String fillTailingBlank(String str, int len) {
+    return fillCharacter(str, len, WHITE_SPACE, false);
+  }
+
+  /**
+   * <P>对长度不足的字符串进行左补齐
+   * <p>源字符串可以为 {@code null}
+   *
+   * @param str 源字符串
+   * @param len 字符串需要的长度
+   * @param fillChar 用以补齐的字符
+   * @return 补齐后的字符串
+   */
+  public static String fillLeadingCharacter(String str, int len, char fillChar) {
+    return fillCharacter(str, len, fillChar, true);
+  }
+
+  /**
+   * <P>对长度不足的字符串进行右补齐
+   * <p>源字符串可以为 {@code null}
+   *
+   * @param str 源字符串
+   * @param len 字符串需要的长度
+   * @param fillChar 用以补齐的字符
+   * @return 补齐后的字符串
+   */
+  public static String fillTailingCharacter(String str, int len, char fillChar) {
+    return fillCharacter(str, len, fillChar, false);
+  }
+
+  /**
+   * <P>对长度不足的字符串进行补齐
+   * <p>源字符串可以为 {@code null}
+   *
+   * @param str 源字符串
+   * @param len 字符串需要的长度
+   * @param fillChar 用以补齐的字符
+   * @param isLeading 如果传入值是 {@code true} 则坐补齐, 如果传入值是 {@code false} 则右补齐
+   * @return 补齐后的字符串
+   */
+  public static String fillCharacter(String str, int len, char fillChar, boolean isLeading) {
+    StringBuilder sb = new StringBuilder(isNull(str) ? EMPTY_STRING : str);
+    while (sb.length() < len) {
+      if (isLeading) {
+        sb.insert(0, fillChar);
+      } else {
+        sb.append(fillChar);
+      }
+    }
+    return sb.toString();
+  }
+
+  /**
+   * <p>把字符串末尾的空格全部删除并返回新字符串</p>
+   *
+   * @param str 源字符串
+   * @return 结果字符串
+   */
+  public static String trimTrailingWhitespace(String str) {
+    return trimTrailingChar(str, WHITE_SPACE);
+  }
+
+  /**
+   * <p>把字符串开头的空格全部删除并返回新字符串</p>
+   *
+   * @param str 源字符串
+   * @return 结果字符串
+   */
+  public static String trimLeadingWhitespace(String str) {
+    return trimLeadingChar(str, WHITE_SPACE);
+  }
+
+  /**
+   * <p>把字符串末尾的 {@code trailing} 字符全部删除并返回新字符串</p>
+   *
+   * @param str 源字符串
+   * @param trailing 需要删除的字符
+   * @return 结果字符串
+   */
+  public static String trimTrailingChar(String str, char trailing) {
+    if (!StringUtils.hasLength(str)) {
+      return str;
+    }
+    StringBuilder sb = new StringBuilder(str);
+    while (sb.length() > 0 && trailing == sb.charAt(sb.length() - 1)) {
+      sb.deleteCharAt(sb.length() - 1);
+    }
+    return sb.toString();
+  }
+
+  /**
+   * <p>把字符串开头的 {@code leading} 字符全部删除并返回新字符串</p>
+   *
+   * @param str 源字符串
+   * @param leading 需要删除的字符
+   * @return 结果字符串
+   */
+  public static String trimLeadingChar(String str, char leading) {
+    if (!StringUtils.hasLength(str)) {
+      return str;
+    }
+    StringBuilder sb = new StringBuilder(str);
+    while (sb.length() > 0 && leading == sb.charAt(0)) {
+      sb.deleteCharAt(0);
+    }
+    return sb.toString();
+  }
 
   /**
    * <p>截取字符串</p>
@@ -268,7 +422,7 @@ public class StrUtils {
    * @return 判断结果
    */
   public static boolean isBool(String str) {
-    if (str == null) {
+    if (isNull(str)) {
       return false;
     }
     for (StringBool stringBool : StringBool.values()) {
@@ -287,9 +441,8 @@ public class StrUtils {
    * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
    */
   public static String addZeroLeftIfLenNotEnough(String source, int needLen) {
-    return addCharIfLenNotEnough(source, '0', needLen, (StringBuilder sb, String str) -> {
-      sb.insert(0, str);
-    });
+    return addCharIfLenNotEnough(
+        source, '0', needLen, (StringBuilder sb, String str) -> sb.insert(0, str));
   }
 
   /**
@@ -312,9 +465,8 @@ public class StrUtils {
    * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
    */
   public static String addLeftIfLenNotEnough(String source, char addChar, int needLen) {
-    return addCharIfLenNotEnough(source, addChar, needLen, (StringBuilder sb, String str) -> {
-      sb.insert(0, str);
-    });
+    return addCharIfLenNotEnough(
+        source, addChar, needLen, (StringBuilder sb, String str) -> sb.insert(0, str));
   }
 
   /**
@@ -339,7 +491,8 @@ public class StrUtils {
    * @return 补长后的字符串, 如果传入字符串长度超过所需长度, 则返回原字符串
    */
   public static String addCharIfLenNotEnough(
-      String source, char addChar, int needLen, VoidTwoParamExecutor<StringBuilder, String> executor) {
+      String source, char addChar, int needLen,
+      VoidTwoParamExecutor<StringBuilder, String> executor) {
     int strLen = source.length();
     StringBuilder res = new StringBuilder(source);
     while (strLen < needLen) {
