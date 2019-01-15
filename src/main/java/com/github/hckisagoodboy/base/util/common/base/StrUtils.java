@@ -3,6 +3,8 @@ package com.github.hckisagoodboy.base.util.common.base;
 import com.github.hckisagoodboy.base.util.common.lambda.CharExecutor;
 import com.github.hckisagoodboy.base.util.common.lambda.VoidTwoParamExecutor;
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.springframework.util.StringUtils;
 
 /**
@@ -15,6 +17,18 @@ public class StrUtils {
   public static final String EMPTY_STRING = "";
   public static final char WHITE_SPACE = ' ';
   public static final char ZERO = '0';
+  private static Pattern NUMBER_PATTERN = Pattern.compile("[0-9]*");
+
+  /**
+   * <p>利用正则表达式判断字符串是否是数字</p>
+   *
+   * @param str 源字符串
+   * @return 结果布尔值
+   */
+  public static boolean isNumeric(String str) {
+    Matcher isNum = NUMBER_PATTERN.matcher(str);
+    return isNum.matches();
+  }
 
   /**
    * <P>对长度不足的字符串使用字符 {@code 0} 进行左补齐
@@ -396,6 +410,17 @@ public class StrUtils {
   }
 
   /**
+   * <p>布尔值转换为用以判断是的字符串</p>
+   *
+   * @param isTrue 源布尔值
+   * @return 转换结果
+   */
+  public static String toBoolStr(boolean isTrue) {
+    return isTrue ? StringBool.TRUE.getBoolKey() : StringBool.FALSE.getBoolKey();
+  }
+
+
+  /**
    * <p>判断传入的字符串是否是用以判断是的字符串</p>
    *
    * @param str 字符串参数
@@ -454,6 +479,17 @@ public class StrUtils {
    */
   public static String addZeroRightIfLenNotEnough(String source, int needLen) {
     return addCharIfLenNotEnough(source, '0', needLen, StringBuilder::append);
+  }
+
+  /**
+   * <p>转换数字字符串的进制</p>
+   *
+   * @param numStr 数字字符串
+   * @param notation 需要转换成的进制
+   * @return 转换结果
+   */
+  public static String changeNotation(String numStr, int notation) {
+    return String.valueOf(Integer.parseInt(numStr, notation));
   }
 
   /**
