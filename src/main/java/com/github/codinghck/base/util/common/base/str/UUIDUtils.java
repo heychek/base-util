@@ -1,4 +1,4 @@
-package com.github.codinghck.base.util.common.base;
+package com.github.codinghck.base.util.common.base.str;
 
 import java.util.UUID;
 
@@ -6,7 +6,9 @@ import java.util.UUID;
  * @author hck
  * 2018/11/3 11:33 PM
  */
+@SuppressWarnings({ "unused", "WeakerAccess", "SpellCheckingInspection" })
 public class UUIDUtils {
+
   private UUIDUtils() {}
 
   /**

@@ -13,4 +13,6 @@ public class StrConst {
   public static final String UNDER_LINE_SEPARATOR = "_";
   public static final String POINT_SEPARATOR = ".";
   public static final String DOT_SEPARATOR = ",";
+  public static final String NORMAL_DATE_FMT = "yyyy-MM-dd HH:mm:ss";
+  public static final String EMPTY_OBJ_STR = "{}";
 }

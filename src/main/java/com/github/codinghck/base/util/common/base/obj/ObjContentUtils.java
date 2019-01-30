@@ -1,15 +1,17 @@
-package com.github.codinghck.base.util.common.base;
+package com.github.codinghck.base.util.common.base.obj;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.codinghck.base.util.common.base.str.StrConst;
 import com.github.codinghck.base.util.common.lambda.BooleanExecutor;
 
 /**
  * @author hck
  * 2018/11/3 11:50 PM
  */
-public class ObjUtils {
-  private ObjUtils() {}
-  private static final String EMPTY_OBJ_STR = "{}";
+@SuppressWarnings({ "unused", "WeakerAccess" })
+public class ObjContentUtils {
+
+  private ObjContentUtils() {}
 
   /**
    * <p>判断传进来的 {@code obj} 是否为 null</p>
@@ -38,7 +40,7 @@ public class ObjUtils {
    * @return 判断是否为 null 或为空对象的布尔值
    */
   public static boolean isEmpty(Object obj) {
-    return isNull(obj) || EMPTY_OBJ_STR.equals(JSONObject.toJSONString(obj));
+    return isNull(obj) || StrConst.EMPTY_OBJ_STR.equals(JSONObject.toJSONString(obj));
   }
 
   /**
@@ -48,7 +50,7 @@ public class ObjUtils {
    * @return 判断是否含有为 null 的对象的布尔值
    */
   public static boolean hasNull(Object... objs) {
-    return hasInValidElement(ObjUtils::isNotNull, objs);
+    return hasInValidElement(ObjContentUtils::isNotNull, objs);
   }
 
   /**
@@ -58,7 +60,7 @@ public class ObjUtils {
    * @return 判断是否含有为 null 或为空对象的布尔值
    */
   public static boolean hasObjsEmpty(Object... objs) {
-    return hasInValidElement(ObjUtils::isEmpty, objs);
+    return hasInValidElement(ObjContentUtils::isEmpty, objs);
   }
 
   /**

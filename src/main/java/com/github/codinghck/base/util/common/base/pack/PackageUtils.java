@@ -1,6 +1,6 @@
-package com.github.codinghck.base.util.common.base;
+package com.github.codinghck.base.util.common.base.pack;
 
-import com.github.codinghck.base.util.common.constant.Const;
+import com.github.codinghck.base.util.common.base.str.StrConst;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -14,15 +14,17 @@ import java.util.jar.JarFile;
 /**
  * @author hck 2018/11/5 9:22 AM
  */
+@SuppressWarnings({ "unused", "WeakerAccess" })
 public class PackageUtils {
+
   private PackageUtils() {}
 
-  public static final String PACKAGE_SEPARATOR = ".";
-  public static final String FILE_PACKAGE_TYPE = "file";
-  public static final String JAR_PACKAGE_TYPE = "jar";
-  public static final String JAR_PATH_SEPARATOR = "!";
-  public static final String CLASS_FILE_POSTFIX = ".class";
-  public static final String UNNECESSARY_CLASSES = "classes";
+  private static final String PACKAGE_SEPARATOR = ".";
+  private static final String FILE_PACKAGE_TYPE = "file";
+  private static final String JAR_PACKAGE_TYPE = "jar";
+  private static final String JAR_PATH_SEPARATOR = "!";
+  private static final String CLASS_FILE_POSTFIX = ".class";
+  private static final String UNNECESSARY_CLASSES = "classes";
 
   /**
    * <p>根据包分隔符获取上一层包名</p>
@@ -54,7 +56,7 @@ public class PackageUtils {
    */
   public static String getUpperPackageFileSeparator(String packageName) {
     int i = packageName.lastIndexOf(File.separator);
-    return i == -1 ? Const.EMPTY_STRING : packageName.substring(0, i);
+    return i == -1 ? StrConst.EMPTY_STRING : packageName.substring(0, i);
   }
 
   /**
@@ -65,7 +67,7 @@ public class PackageUtils {
    */
   public static String getUpperPackagePackageSeparator(String packageName) {
     int i = packageName.lastIndexOf(PACKAGE_SEPARATOR);
-    return i == -1 ? Const.EMPTY_STRING : packageName.substring(0, i);
+    return i == -1 ? StrConst.EMPTY_STRING : packageName.substring(0, i);
   }
 
   /**
@@ -91,7 +93,7 @@ public class PackageUtils {
    */
   public static String getUpperPackageName(String packageName, String separator) {
     int i = packageName.lastIndexOf(separator);
-    return i == -1 ? Const.EMPTY_STRING : packageName.substring(0, i);
+    return i == -1 ? StrConst.EMPTY_STRING : packageName.substring(0, i);
   }
 
   /**

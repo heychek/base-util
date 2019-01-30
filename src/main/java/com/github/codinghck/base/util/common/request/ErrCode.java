@@ -4,6 +4,7 @@ package com.github.codinghck.base.util.common.request;
  * @author hck
  * 2018/10/29 3:46 PM
  */
+@SuppressWarnings("unused")
 public enum ErrCode {
   // 请求返回码枚举类
   SUCCESS(0, "成功", ""),

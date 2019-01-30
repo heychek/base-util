@@ -1,4 +1,4 @@
-package com.github.codinghck.base.util.common.collection;
+package com.github.codinghck.base.util.common.cache;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -9,8 +9,10 @@ import java.util.*;
 /**
  * 用来存储短暂对象的缓存类，实现Map接口，内部有一个定时器用来清除过期（30秒）的对象。
  * 为避免创建过多线程，没有特殊要求请使用getDefault()方法来获取本类的实例
+ *
  * @author hck 2018/11/29 10:12 AM
  */
+@SuppressWarnings("unused")
 public class CacheMap<K, V> extends AbstractMap<K, V> {
 
   private static final long DEFAULT_TIMEOUT = 30000;
@@ -84,7 +86,7 @@ public class CacheMap<K, V> extends AbstractMap<K, V> {
   private long cacheTimeout;
   private final Map<K, CacheEntry> map = new HashMap<>();
 
-  public CacheMap(long timeout) {
+  private CacheMap(long timeout) {
     this.cacheTimeout = timeout;
     new ClearThread().start();
   }
@@ -114,5 +116,4 @@ public class CacheMap<K, V> extends AbstractMap<K, V> {
     }
     return value;
   }
-
 }

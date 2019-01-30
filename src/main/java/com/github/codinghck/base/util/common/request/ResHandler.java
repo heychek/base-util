@@ -4,6 +4,7 @@ package com.github.codinghck.base.util.common.request;
  * @author hck
  * 2018/10/29 3:46 PM
  */
+@SuppressWarnings("unused")
 public class ResHandler<T> {
   private static final String SUCCESS_MSG = "success";
 

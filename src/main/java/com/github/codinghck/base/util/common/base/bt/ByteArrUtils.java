@@ -1,11 +1,12 @@
-package com.github.codinghck.base.util.common.base;
+package com.github.codinghck.base.util.common.base.bt;
 
 /**
  * @author hck 2018/11/22 5:02 PM
  */
-public class ByteUtils {
+@SuppressWarnings("unused")
+public class ByteArrUtils {
 
-  private ByteUtils() {}
+  private ByteArrUtils() {}
 
   /**
    * <p>从字节数组中截取子数组</p>
@@ -20,5 +21,4 @@ public class ByteUtils {
     System.arraycopy(src, begin, bs, 0, count);
     return bs;
   }
-
 }

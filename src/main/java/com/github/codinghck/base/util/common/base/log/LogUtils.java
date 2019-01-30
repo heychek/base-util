@@ -1,6 +1,8 @@
-package com.github.codinghck.base.util.common.base;
+package com.github.codinghck.base.util.common.base.log;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.codinghck.base.util.common.base.date.DateFmtUtils;
+import com.github.codinghck.base.util.common.base.str.StrConst;
 import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.CodeSignature;
@@ -10,7 +12,9 @@ import org.slf4j.Logger;
  * @author hck
  * 2018/10/29 12:11 PM
  */
+@SuppressWarnings({ "unused", "WeakerAccess" })
 public class LogUtils {
+
   private LogUtils() {}
 
   /**
@@ -20,7 +24,7 @@ public class LogUtils {
    * @param e 异常对象
    */
   public static void logThrowable(Logger log, Throwable e) {
-    logThrowable(log, e, "");
+    logThrowable(log, e, StrConst.EMPTY_STRING);
   }
 
   /**
@@ -31,7 +35,7 @@ public class LogUtils {
    * @param tip 错误提示
    */
   public static void logThrowable(Logger log, Throwable e, String tip) {
-    log.error("occur an err, tip = {}, e = {}, msg = {}, stackTrace = {}",
+    log.error("发生异常, tip = {}, e = {}, msg = {}, stackTrace = {}",
         tip, e, e.getMessage(), e.getStackTrace());
   }
 
@@ -56,7 +60,7 @@ public class LogUtils {
     String paramNames = Arrays.toString(((CodeSignature) jp.getSignature()).getParameterNames());
     String paramArgs = Arrays.toString(jp.getArgs());
     String returnValue = JSONObject.toJSONString(proceedRes);
-    String time = DateUtils.currTimeStrDefaultPattern();
+    String time = DateFmtUtils.currTimeStrDefaultPattern();
     log.info("className = {},  methodName = {}, paramNames = {}, "
             + "paramArgs = {}, returnValue = {}, time = {}",
         className, methodName, paramNames, paramArgs, returnValue, time);

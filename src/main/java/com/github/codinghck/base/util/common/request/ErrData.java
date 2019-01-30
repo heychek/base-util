@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SuppressWarnings("WeakerAccess")
 public class ErrData {
   private String dataId;
   private String msg;

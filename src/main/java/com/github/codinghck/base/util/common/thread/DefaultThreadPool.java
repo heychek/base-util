@@ -30,6 +30,7 @@ import org.jetbrains.annotations.NotNull;
  * @author hck
  * 2018/11/13 5:17 PM
  */
+@SuppressWarnings("unused")
 public class DefaultThreadPool {
   private static final int DEFAULT_CORE_POOL_SIZE = 5;
   private static final int DEFAULT_MAXIMUM_POOL_SIZE = 5;

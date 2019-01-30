@@ -1,6 +1,6 @@
 package com.github.codinghck.base.util.common.base.str;
 
-import com.github.codinghck.base.util.common.base.ObjUtils;
+import com.github.codinghck.base.util.common.base.obj.ObjContentUtils;
 import org.springframework.util.StringUtils;
 
 /**
@@ -38,7 +38,7 @@ public class StrContentUtils {
    * @return 判断是否含有为 null 的字符串的布尔值
    */
   public static boolean hasNull(String... strs) {
-    return ObjUtils.hasInValidElement(StrContentUtils::isNotNull, strs);
+    return ObjContentUtils.hasInValidElement(StrContentUtils::isNotNull, strs);
   }
 
   /**
@@ -48,7 +48,7 @@ public class StrContentUtils {
    * @return 判断是否含有为 null 或值为长度为 0 的字符串的布尔值
    */
   public static boolean hasEmpty(String... strs) {
-    return ObjUtils.hasInValidElement(StringUtils::hasLength, strs);
+    return ObjContentUtils.hasInValidElement(StringUtils::hasLength, strs);
   }
 
   /**
@@ -58,6 +58,6 @@ public class StrContentUtils {
    * @return 判断是否含有为 null 或值为长度为 0 或只包含空格的字符串的布尔值
    */
   public static boolean hasBlank(String... strs) {
-    return ObjUtils.hasInValidElement(StringUtils::hasText, strs);
+    return ObjContentUtils.hasInValidElement(StringUtils::hasText, strs);
   }
 }

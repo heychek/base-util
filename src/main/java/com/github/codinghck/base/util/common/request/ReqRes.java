@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
+@SuppressWarnings("WeakerAccess")
 public class ReqRes<T> {
   @NonNull
   private Integer code;

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@SuppressWarnings("unused")
 public class ParamException extends RuntimeException {
 
   private static final long serialVersionUID = -5043000680954387925L;

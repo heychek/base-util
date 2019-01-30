@@ -1,12 +1,13 @@
-package com.github.codinghck.base.util.common.base;
+package com.github.codinghck.base.util.common.base.num;
 
 /**
- * @author hck
- * 2018/11/13 1:49 PM
+ * @author hck 2019-01-30 22:28
  */
-public class NumUtils {
+@SuppressWarnings("unused")
+public class NumBoolUtils {
 
-  private NumUtils() {}
+  private NumBoolUtils() {}
+
   /**
    * <p>判断传入的 {@code int} 类型数字参数是否是用以判断是的数字</p>
    *

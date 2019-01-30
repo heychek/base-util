@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
  * @author hck 2018/11/21 1:52 PM
  */
 @Service
+@SuppressWarnings("unused")
 public class SpringCtxUtils implements ApplicationContextAware {
 
   private static ApplicationContext applicationContext;
@@ -37,7 +38,6 @@ public class SpringCtxUtils implements ApplicationContextAware {
    * @return bean 对象
    */
   public static Object getBeanById(String id) {
-    System.out.println("applicationContext: " + applicationContext);
     return applicationContext.getBean(id);
   }
 

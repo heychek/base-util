@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * 2018/10/30 1:34 PM
  */
 @Data
+@SuppressWarnings("unused")
 public class Param<T> {
   @NotBlank
   @Size(max = 32)
