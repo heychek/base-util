@@ -231,6 +231,7 @@ public class PackageUtils {
    * @param packagePath 包路径
    * @param needChild 是否遍历子包
    * @return 类的完整名称列表
+   * @throws IOException 获取错误
    */
   public static List<String> getClassNamesByJar(
       String jarFilePath, String packagePath, boolean needChild) throws IOException {

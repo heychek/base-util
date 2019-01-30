@@ -45,6 +45,7 @@ public class SpringCtxUtils implements ApplicationContextAware {
    * <p>根据 bean 的 class 来查找对象</p>
    *
    * @param c bean 的 class
+   * @param <T> 对象类型
    * @return bean 对象
    */
   public static <T> T getBeanByClass(Class<T> c) {
@@ -55,6 +56,7 @@ public class SpringCtxUtils implements ApplicationContextAware {
    * <p>根据 bean 的 class 来查找所有的对象(包括子类)</p>
    *
    * @param c bean 的 class
+   * @param <T> 对象类型
    * @return 所有的 bean 对象(包括子类)
    */
   public static <T> Map<String, T> getBeansByClass(Class<T> c) {
