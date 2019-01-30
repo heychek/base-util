@@ -202,7 +202,7 @@ public class HttpUtils {
       return null;
     }
 
-    if (isEntityLEnOutRange(entity)) {
+    if (isEntityLenOutRange(entity)) {
       return EntityUtils.toString(entity, DEFAULT_CHARSET);
     }
 
@@ -223,7 +223,7 @@ public class HttpUtils {
    * @param entity <code>HttpEntity</code> 对象
    * @return 是否有效的布尔值
    */
-  public static boolean isEntityLEnOutRange(HttpEntity entity) {
+  public static boolean isEntityLenOutRange(HttpEntity entity) {
     long len = entity.getContentLength();
     return len != INVALID_ENTITY_LENGTH && len < MAX_ENTITY_LENGTH;
   }
