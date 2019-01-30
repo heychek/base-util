@@ -1,7 +1,7 @@
 package com.github.codinghck.base.util.common.base.log;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.codinghck.base.util.common.base.date.DateFmtUtils;
+import com.github.codinghck.base.util.common.base.date.DateProvider;
 import com.github.codinghck.base.util.common.base.str.StrConst;
 import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
@@ -60,7 +60,7 @@ public class LogUtils {
     String paramNames = Arrays.toString(((CodeSignature) jp.getSignature()).getParameterNames());
     String paramArgs = Arrays.toString(jp.getArgs());
     String returnValue = JSONObject.toJSONString(proceedRes);
-    String time = DateFmtUtils.currTimeStrDefaultPattern();
+    String time = DateProvider.currTimeStrDefaultPattern();
     log.info("className = {},  methodName = {}, paramNames = {}, "
             + "paramArgs = {}, returnValue = {}, time = {}",
         className, methodName, paramNames, paramArgs, returnValue, time);
