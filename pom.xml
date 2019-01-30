@@ -6,7 +6,7 @@
 
   <groupId>com.github.hckisagoodboy</groupId>
   <artifactId>base-util</artifactId>
-  <version>1.2.1-RELEASE</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>util</name>
@@ -103,14 +103,29 @@
     </dependency>
   </dependencies>
 
+  <!-- 个人阿里云私仓 -->
+  <!--<distributionManagement>-->
+    <!--<repository>-->
+      <!--<id>rdc-releases</id>-->
+      <!--<url>https://repo.rdc.aliyun.com/repository/35971-release-lsbFq0/</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+      <!--<id>rdc-snapshots</id>-->
+      <!--<url>https://repo.rdc.aliyun.com/repository/35971-snapshot-ZmvChd/</url>-->
+    <!--</snapshotRepository>-->
+  <!--</distributionManagement>-->
+
+  <!-- 小虫阿里云私仓 -->
   <distributionManagement>
     <repository>
-      <id>rdc-releases</id>
-      <url>https://repo.rdc.aliyun.com/repository/35971-release-lsbFq0/</url>
+      <id>cbh-release</id>
+      <name>iZ23brrsba2Z-releases</name>
+      <url>http://121.41.29.250:8081/artifactory/libs-release-local</url>
     </repository>
     <snapshotRepository>
-      <id>rdc-snapshots</id>
-      <url>https://repo.rdc.aliyun.com/repository/35971-snapshot-ZmvChd/</url>
+      <id>cbh-snapshots</id>
+      <name>iZ23brrsba2Z-snapshots</name>
+      <url>http://121.41.29.250:8081/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
   </distributionManagement>
 
