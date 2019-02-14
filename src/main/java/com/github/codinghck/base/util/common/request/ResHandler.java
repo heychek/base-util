@@ -6,6 +6,7 @@ package com.github.codinghck.base.util.common.request;
  */
 @SuppressWarnings("unused")
 public class ResHandler<T> {
+
   private static final String SUCCESS_MSG = "success";
 
   public ReqRes<T> getDefaultRqRes(T t) {

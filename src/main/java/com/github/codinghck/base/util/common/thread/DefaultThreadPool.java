@@ -32,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @SuppressWarnings("unused")
 public class DefaultThreadPool {
+
   private static final int DEFAULT_CORE_POOL_SIZE = 5;
   private static final int DEFAULT_MAXIMUM_POOL_SIZE = 5;
   private static final int DEFAULT_KEEP_ALIVE_TIME = 0;

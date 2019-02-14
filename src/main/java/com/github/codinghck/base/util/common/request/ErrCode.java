@@ -6,6 +6,7 @@ package com.github.codinghck.base.util.common.request;
  */
 @SuppressWarnings("unused")
 public enum ErrCode {
+
   // 请求返回码枚举类
   SUCCESS(0, "成功", ""),
   PARAMETER_ERROR(400, "参数错误", ""),
