@@ -10,4 +10,6 @@ public class NumConst {
 
   public static final int DELETED = 1;
   public static final int NOT_DELETED = 0;
+  public static final int SUCCEED = 1;
+  public static final int FAILED = 0;
 }
