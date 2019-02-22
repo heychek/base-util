@@ -7,12 +7,13 @@ import java.util.Set;
 /**
  * @author hck 2019-02-14 11:31
  */
+@SuppressWarnings("unused")
 public class StrCollectionConverter {
 
   private StrCollectionConverter() {}
 
   /**
-   * <p>字符串转换为 set</p>
+   * <p>根据字符串的分隔符将字符串转换为 set</p>
    *
    * @param content 字符串
    * @param strSeparator 字符串分隔符

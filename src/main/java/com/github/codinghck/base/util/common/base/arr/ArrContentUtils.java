@@ -13,6 +13,7 @@ public class ArrContentUtils {
   /**
    * <p>判断传进来的数组是否为 null 并且不为空列表</p>
    *
+   * @param <T> 数组类型
    * @param arr 需要判断的数组对象
    * @return 判断是否为 null 或为空列表的布尔值
    */

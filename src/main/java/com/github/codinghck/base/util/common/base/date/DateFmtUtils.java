@@ -4,6 +4,7 @@ import com.github.codinghck.base.util.common.base.str.StrConst;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -38,6 +39,28 @@ public class DateFmtUtils {
    */
   public static long dateStrToSecond(String dateStr, String pattern) throws ParseException {
     return dateStrToMills(dateStr, pattern) / 1000;
+  }
+
+  /**
+   * <p>将传入的秒值转换为 {@code Date} 类型对象</p>
+   *
+   * @param second 需被转换的秒值
+   * @return 转换后 {@code Date} 类型对象
+   */
+  public static Date second2Date(long second) {
+    return millis2Date(second * 1000);
+  }
+
+  /**
+   * <p>将传入的毫秒值转换为 {@code Date} 类型对象</p>
+   *
+   * @param millis 需被转换的毫秒值
+   * @return 转换后 {@code Date} 类型对象
+   */
+  public static Date millis2Date(long millis) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(millis);
+    return calendar.getTime();
   }
 
   /**
