@@ -13,6 +13,7 @@ import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -54,7 +55,19 @@ public class HttpUtils {
    * @throws IOException 执行失败抛出异常
    */
   public static String doGetByMap(String url, Map<String, String> map) throws IOException {
-    return doGet(addMapToUrl(url, map));
+    return doGetByMap(url, map, -1);
+  }
+
+  /**
+   * <p>get请求, 参数放在map里</p>
+   *
+   * @param url 请求地址
+   * @param map 参数map
+   * @return {@code String} 对象的响应结果
+   * @throws IOException 执行失败抛出异常
+   */
+  public static String doGetByMap(String url, Map<String, String> map, int millis) throws IOException {
+    return doGet(addMapToUrl(url, map), millis);
   }
 
   /**
@@ -65,10 +78,26 @@ public class HttpUtils {
    * @throws IOException 执行失败抛出异常
    */
   public static String doGet(String url) throws IOException {
+    return doGet(url, -1);
+  }
+
+  /**
+   * <p>get请求, 参数拼接在地址上</p>
+   *
+   * @param url 请求地址加参数
+   * @param millis 超时时间
+   * @return 响应结果
+   * @throws IOException 执行失败抛出异常
+   */
+  public static String doGet(String url, int millis) throws IOException {
     CloseableHttpClient httpClient = HttpClients.createDefault();
     CloseableHttpResponse response = null;
     try {
-      response = httpClient.execute(new HttpGet(url));
+      HttpGet get = new HttpGet(url);
+      if (millis > 0) {
+        get.setConfig(getReqTimeoutConf(millis));
+      }
+      response = httpClient.execute(get);
       HttpEntity res = response.getEntity();
       return entityToString(res);
     } finally {
@@ -85,7 +114,20 @@ public class HttpUtils {
    * @throws IOException 执行失败抛出异常
    */
   public static String doPostByMap(String url, Map<String, String> map) throws IOException {
-    return postJson(url, JSONObject.fromObject(map).toString());
+    return doPostByMap(url, map, -1);
+  }
+
+  /**
+   * <p>发送 post 请求, {@code map} 转换为 body 参数</p>
+   *
+   * @param url 地址
+   * @param map 参数
+   * @param millis 超时时间
+   * @return 返回值
+   * @throws IOException 执行失败抛出异常
+   */
+  public static String doPostByMap(String url, Map<String, String> map, int millis) throws IOException {
+    return postJson(url, JSONObject.fromObject(map).toString(), millis);
   }
 
   /**
@@ -97,10 +139,26 @@ public class HttpUtils {
    * @throws IOException 执行失败抛出异常
    */
   public static String postJson(String url, String body) throws IOException {
+    return postJson(url, body, -1);
+  }
+
+  /**
+   * <p>发送 post 请求, {@code body} 参数为 json 字符串</p>
+   *
+   * @param url 请求地址
+   * @param body 用以 post 请求的 json 字符串形式的 {@code body} 参数
+   * @param millis 超时时间
+   * @return 响应结果
+   * @throws IOException 执行失败抛出异常
+   */
+  public static String postJson(String url, String body, int millis) throws IOException {
     HttpPost post = new HttpPost(url);
     post.addHeader(CONTENT_TYPE, JSON_POST_CONTENT_TYPE);
     post.setHeader(ACCEPT, JSON_POST_ACCEPT);
     post.setEntity(getJsonBodyStringEntity(body));
+    if (millis > 0) {
+      post.setConfig(getReqTimeoutConf(millis));
+    }
     return doPost(post);
   }
 
@@ -161,6 +219,18 @@ public class HttpUtils {
   }
 
   /**
+   * <p>获取用以设置连接请求超时时间的配置</p>
+   *
+   * @param millis 超时时间
+   * @return 用以设置连接请求超时时间的配置对象
+   */
+  public static RequestConfig getReqTimeoutConf(int millis) {
+    return RequestConfig.custom()
+        .setConnectTimeout(millis).setConnectionRequestTimeout(millis)
+        .setSocketTimeout(millis).build();
+  }
+
+  /**
    * <p>将传入的 {@code key} 和 {@code value} 结合成 {@code key=value} 的 url 参数形式</p>
    * <p>toParamStr("key", "value") = "key=value"</p>
    * <p>toParamStr("page", "3") = "page=3"</p>
@@ -169,7 +239,7 @@ public class HttpUtils {
    * @param value 参数值
    * @return 返回 {@code key=value} 的 url 参数形式, 如果传入的参数名为 null 或者空字符串, 或者参数值 为 null, 则抛出异常
    */
-  public static String toParamStr(String key, String value) {
+  private static String toParamStr(String key, String value) {
     Assert.hasText(key, "key 不能为空");
     Assert.notNull(value, "value 不能为 null");
     return key + PARAM_K_V_CONN + encodeParamByDefaultCharset(value);
@@ -181,7 +251,7 @@ public class HttpUtils {
    * @param param 传入的参数
    * @return 如果默认格式无法转码, 则返回原字符串, 如传入 param 为 null, 则抛出异常
    */
-  public static String encodeParamByDefaultCharset(String param) {
+  private static String encodeParamByDefaultCharset(String param) {
     Assert.notNull(param, "param 不能为 null");
     try {
       return URLEncoder.encode(param, DEFAULT_CHARSET);
@@ -197,7 +267,7 @@ public class HttpUtils {
    * @return 如果传入的 <code>HttpEntity</code> 对象为 {@code null} 则返回 {@code null}
    * @throws IOException if an error occurs reading the input stream 则抛出异常
    */
-  public static String entityToString(HttpEntity entity) throws IOException {
+  private static String entityToString(HttpEntity entity) throws IOException {
     if (entity == null) {
       return null;
     }
@@ -223,7 +293,7 @@ public class HttpUtils {
    * @param entity <code>HttpEntity</code> 对象
    * @return 是否有效的布尔值
    */
-  public static boolean isEntityLenOutRange(HttpEntity entity) {
+  private static boolean isEntityLenOutRange(HttpEntity entity) {
     long len = entity.getContentLength();
     return len != INVALID_ENTITY_LENGTH && len < MAX_ENTITY_LENGTH;
   }
@@ -234,7 +304,7 @@ public class HttpUtils {
    * @param response 传入的 {@code HttpResponse} 对象
    * @return 返回结果
    */
-  public static boolean isResponseSuccess(HttpResponse response) {
+  private static boolean isResponseSuccess(HttpResponse response) {
     return response != null && response.getStatusLine().getStatusCode() == SUCCESS_STATUS_CODE;
   }
 
@@ -244,7 +314,7 @@ public class HttpUtils {
    * @param closeables 可关闭对象
    * @throws IOException 关闭遇到 IO 异常时抛出
    */
-  public static void closeConn(Closeable... closeables) throws IOException {
+  private static void closeConn(Closeable... closeables) throws IOException {
     for (Closeable c : closeables) {
       if (c != null) {
         c.close();

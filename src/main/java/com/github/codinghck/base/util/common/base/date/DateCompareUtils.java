@@ -1,12 +1,13 @@
 package com.github.codinghck.base.util.common.base.date;
 
+import com.github.codinghck.base.util.common.base.str.StrConst;
 import java.text.ParseException;
 import java.util.Date;
 
 /**
  * @author hck 2019-01-30 22:14
  */
-@SuppressWarnings({ "unused", "WeakerAccess" })
+@SuppressWarnings({ "unused", "WeakerAccess", "SpellCheckingInspection" })
 public class DateCompareUtils {
 
   private DateCompareUtils() {}
@@ -37,6 +38,51 @@ public class DateCompareUtils {
    */
   public static int compare(String date1, String date2, String pattern) throws ParseException {
     return compare(DateFmtUtils.strToDate(date1, pattern), DateFmtUtils.strToDate(date2, pattern));
+  }
+
+  /**
+   * <p>比较两个日期之间的差距是不是在指定误差毫秒值内</p>
+   *
+   * @param dateStr1 日期字符串1
+   * @param dateStr2 日期字符串2
+   * @param millis 误差毫秒值
+   * @return 是不是在指定误差内的布尔值结果
+   * @throws ParseException 当传入日期字符串无法转换时抛出异常
+   */
+  public static boolean isDateStrsDiffInRangeMillisDefaultPattern(
+      String dateStr1, String dateStr2, long millis) throws ParseException {
+    return isDateStrsDiffInRangeMillis(dateStr1, dateStr2, StrConst.NORMAL_DATE_FMT, millis);
+  }
+
+  /**
+   * <p>比较两个日期之间的差距是不是在指定误差毫秒值内</p>
+   *
+   * @param dateStr1 日期字符串1
+   * @param dateStr2 日期字符串2
+   * @param pattern 日期转换格式
+   * @param millis 误差毫秒值
+   * @return 是不是在指定误差内的布尔值结果
+   * @throws ParseException 当传入日期字符串无法转换时抛出异常
+   */
+  public static boolean isDateStrsDiffInRangeMillis(
+      String dateStr1, String dateStr2, String pattern, long millis) throws ParseException {
+    return isDatesDiffInRangeMillis(
+        DateFmtUtils.strToDate(dateStr1, pattern),
+        DateFmtUtils.strToDate(dateStr2, pattern),
+        millis
+    );
+  }
+
+  /**
+   * <p>比较两个日期之间的差距是不是在指定误差毫秒值内</p>
+   *
+   * @param date1 日期1
+   * @param date2 日期2
+   * @param millis 毫秒值
+   * @return 是不是在指定误差内的布尔值结果
+   */
+  public static boolean isDatesDiffInRangeMillis(Date date1, Date date2, long millis) {
+    return Math.abs(date1.getTime() - date2.getTime()) <= Math.abs(millis);
   }
 
   /**
