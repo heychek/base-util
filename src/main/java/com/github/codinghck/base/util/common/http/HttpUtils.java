@@ -45,6 +45,7 @@ public class HttpUtils {
   private static final int INVALID_ENTITY_LENGTH = -1;
   private static final int MAX_ENTITY_LENGTH = 2048;
   private static final int SUCCESS_STATUS_CODE = 200;
+  private static final int DEFAULT_TIMEOUT_MILLIS = 10000;
 
   /**
    * <p>get请求, 参数放在map里</p>
@@ -94,9 +95,7 @@ public class HttpUtils {
     CloseableHttpResponse response = null;
     try {
       HttpGet get = new HttpGet(url);
-      if (millis > 0) {
-        get.setConfig(getReqTimeoutConf(millis));
-      }
+      get.setConfig(getReqTimeoutConf(millis > 0 ? millis : DEFAULT_TIMEOUT_MILLIS));
       response = httpClient.execute(get);
       HttpEntity res = response.getEntity();
       return entityToString(res);
@@ -156,9 +155,7 @@ public class HttpUtils {
     post.addHeader(CONTENT_TYPE, JSON_POST_CONTENT_TYPE);
     post.setHeader(ACCEPT, JSON_POST_ACCEPT);
     post.setEntity(getJsonBodyStringEntity(body));
-    if (millis > 0) {
-      post.setConfig(getReqTimeoutConf(millis));
-    }
+    post.setConfig(getReqTimeoutConf(millis > 0 ? millis : DEFAULT_TIMEOUT_MILLIS));
     return doPost(post);
   }
 

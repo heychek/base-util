@@ -101,6 +101,13 @@
       <version>2.4</version>
       <classifier>jdk15</classifier>
     </dependency>
+
+    <!-- json-schema 校验 -->
+    <dependency>
+      <groupId>com.github.java-json-tools</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>2.2.10</version>
+    </dependency>
   </dependencies>
 
   <!-- 个人阿里云私仓 -->
