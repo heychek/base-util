@@ -29,7 +29,7 @@ public class JsonSchemaUtils {
    * @throws ProcessingException 校验规则不合法
    */
   public static ProcessingReport validate(String rule, String json)
-      throws IOException, ProcessingException {
+      throws ProcessingException, IOException {
     JsonNode main = JsonLoader.fromString(rule);
     JsonNode instance = JsonLoader.fromString(json);
     JsonSchema schema = FACTORY.getJsonSchema(main);

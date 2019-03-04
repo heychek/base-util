@@ -64,6 +64,7 @@ public class HttpUtils {
    *
    * @param url 请求地址
    * @param map 参数map
+   * @param millis 超时毫秒数
    * @return {@code String} 对象的响应结果
    * @throws IOException 执行失败抛出异常
    */
