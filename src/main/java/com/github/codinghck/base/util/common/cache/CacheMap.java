@@ -18,9 +18,13 @@ public class CacheMap<K, V> extends AbstractMap<K, V> {
   private static final long DEFAULT_TIMEOUT = 30000;
   private static CacheMap<Object, Object> defaultInstance;
 
-  public static synchronized CacheMap<Object, Object> getDefault() {
+  public static CacheMap<Object, Object> getDefault() {
+    return getDefault(DEFAULT_TIMEOUT);
+  }
+
+  public static synchronized CacheMap<Object, Object> getDefault(long millis) {
     if (defaultInstance == null) {
-      defaultInstance = new CacheMap<>(DEFAULT_TIMEOUT);
+      defaultInstance = new CacheMap<>(millis);
     }
     return defaultInstance;
   }
@@ -61,7 +65,7 @@ public class CacheMap<K, V> extends AbstractMap<K, V> {
     }
 
     @Override
-    @SuppressWarnings("all")
+//    @SuppressWarnings("all")
     public void run() {
       while (true) {
           long now = System.currentTimeMillis();
