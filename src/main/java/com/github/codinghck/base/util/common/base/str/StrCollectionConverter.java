@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * @author hck 2019-02-14 11:31
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class StrCollectionConverter {
 
   private StrCollectionConverter() {}
