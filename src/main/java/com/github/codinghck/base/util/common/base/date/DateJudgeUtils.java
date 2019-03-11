@@ -14,12 +14,31 @@ public class DateJudgeUtils {
   /**
    * <p>判断是否是工作日</p>
    *
+   * @return 是否是工作日
+   */
+  public static boolean isWeek() {
+    return isWeek(new Date());
+  }
+
+  /**
+   * <p>判断是否是工作日</p>
+   *
    * @param date 日期
    * @return 是否是工作日
    */
   public static boolean isWeek(Date date) {
     WeekDay weekDay = dayForWeek(date);
     return isWeek(weekDay);
+  }
+
+  /**
+   * <p>判断是否是周末</p>
+   *
+   * @return 是否是周末
+   */
+  public static boolean isWeekend() {
+    WeekDay weekDay = dayForWeek(new Date());
+    return isWeekend(weekDay);
   }
 
   /**
