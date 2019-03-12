@@ -84,6 +84,7 @@ public class DateProvider {
   /**
    * <p>根据基准日期获取日期</p>
    *
+   * @param date 基准日期
    * @param idx -1 表示获取前一天日期, -2 表示获取前两天, 1 表示获取后一天, 2 表示后两天, 以此类推
    * @return 日期对象
    */

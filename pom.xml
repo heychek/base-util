@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.codinghck</groupId>
-  <artifactId>base-util</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <artifactId>utils</artifactId>
+  <version>1.1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>util</name>
+  <name>utils</name>
   <description>base util</description>
   <url>https://git@github.com:codinghck/base-util.git</url>
   <licenses>
@@ -27,7 +27,7 @@
   <scm>
     <connection>scm:git:git@github.com:codinghck/base-util.git</connection>
     <developerConnection>scm:git:git@github.com:codinghck/base-util.git</developerConnection>
-    <url>git@github.com:codinghck/base-util.git</url>
+    <url>https://github.com/codinghck/base-util.git</url>
   </scm>
 
   <parent>
@@ -123,38 +123,38 @@
   <!--</distributionManagement>-->
 
   <!-- 小虫阿里云私仓 -->
+  <!--<distributionManagement>-->
+    <!--<repository>-->
+      <!--<id>cbh-release</id>-->
+      <!--<name>iZ23brrsba2Z-releases</name>-->
+      <!--<url>http://121.41.29.250:8081/artifactory/libs-release-local</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+      <!--<id>cbh-snapshots</id>-->
+      <!--<name>iZ23brrsba2Z-snapshots</name>-->
+      <!--<url>http://121.41.29.250:8081/artifactory/libs-snapshot-local</url>-->
+    <!--</snapshotRepository>-->
+  <!--</distributionManagement>-->
+
+  <!-- maven 中央仓库 -->
   <distributionManagement>
     <repository>
-      <id>cbh-release</id>
-      <name>iZ23brrsba2Z-releases</name>
-      <url>http://121.41.29.250:8081/artifactory/libs-release-local</url>
+      <id>kevin-releases</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
-      <id>cbh-snapshots</id>
-      <name>iZ23brrsba2Z-snapshots</name>
-      <url>http://121.41.29.250:8081/artifactory/libs-snapshot-local</url>
+      <id>kevin-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
   <build>
     <plugins>
-      <!-- 为了使打包的 jar 包有注释 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.3</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+      <!-- 生成Source jar文件 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
+        <!--<version>2.4</version>-->
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -164,14 +164,56 @@
           </execution>
         </executions>
       </plugin>
-      <!-- 打包过程中控制台输出存在乱码，已被证明无用，可以删除 -->
+      <!-- 生成Javadoc -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.12.4</version>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.4</version>
         <configuration>
-          <forkMode>once</forkMode>
-          <argLine>-Dfile.encoding=UTF-8</argLine>
+          <show>private</show>
+          <nohelp>true</nohelp>
+          <charset>UTF-8</charset>
+          <encoding>UTF-8</encoding>
+          <docencoding>UTF-8</docencoding>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <!--关闭 doclint,避免注解检查不通过-->
+            <!--<configuration>-->
+            <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+            <!--</configuration>-->
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Maven GPG 插件用于使用以下配置对组件进行签名 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Nexus Staging Maven 插件是将组件部署到 OSSRH 并将其发布到 Central Repository 的推荐方法 -->
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
     </plugins>
