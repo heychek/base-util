@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.github.codinghck.base.util.common.spring.restful.config.ScanConfig

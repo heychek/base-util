@@ -49,7 +49,15 @@ public class DateProvider {
   public static Date preWeekDay() {
     Date today = new Date();
     WeekDay weekDay = DateJudgeUtils.dayForWeek(today);
-    int preIdx = weekDay == WeekDay.MONDAY ? -3 : -1;
+    int preIdx = -1;
+    switch (weekDay) {
+      case MONDAY:
+        preIdx = -3;break;
+      case SUNDAY:
+        preIdx = -2;break;
+      default:
+        break;
+    }
     return getByDay(today, preIdx);
   }
 

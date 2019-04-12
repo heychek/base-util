@@ -15,4 +15,6 @@ public class StrConst {
   public static final String DOT_SEPARATOR = ",";
   public static final String NORMAL_DATE_FMT = "yyyy-MM-dd HH:mm:ss";
   public static final String EMPTY_OBJ_STR = "{}";
+  public static final String DEFAULT_SUCCESS_MSG = "success";
+  public static final String DEFAULT_FAIL_MSG = "fail";
 }

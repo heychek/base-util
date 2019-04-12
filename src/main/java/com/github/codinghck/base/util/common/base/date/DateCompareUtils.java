@@ -99,7 +99,58 @@ public class DateCompareUtils {
    */
   public static boolean isInRange(
       String time, String start, String end, String pattern) throws ParseException {
-    return (compare(start, time, pattern) == -1 || compare(start, time, pattern) == 0)
-        && compare(end, time, pattern) == 1;
+    Date timeDate = DateFmtUtils.strToDate(time, pattern);
+    Date startDate = DateFmtUtils.strToDate(start, pattern);
+    Date endDate = DateFmtUtils.strToDate(end, pattern);
+    return isInRange(timeDate, startDate, endDate);
+  }
+
+  /**
+   * <p>判断传入的日期 {@code time} 是否晚于或等于 {@code start} 日期并且早于 {@code end} 日期,
+   * <p>即日期 {@code time} 是否处于 {@code start} 和 {@code end} 的左闭右开区间范围内
+   *
+   * @param time 需要被判断的日期
+   * @param start 表示区间开始日期
+   * @param end 表示区间结束的日期
+   * @return 返回表示是否在此区间的布尔值
+   */
+  public static boolean isInRange(Date time, Date start, Date end) {
+    return (compare(start, time) == -1 || compare(start, time) == 0) && compare(end, time) == 1;
+  }
+
+  /**
+   * <p>判断当前日期是否晚于或等于 {@code start} 日期并且早于 {@code end} 日期,
+   * <p>即当前日期是否处于 {@code start} 和 {@code end} 的左闭右开区间范围内
+   *
+   * @param start 表示区间开始日期
+   * @param end 表示区间结束的日期
+   * @return 返回表示是否在此区间的布尔值
+   */
+  public static boolean isNowInRange(Date start, Date end) {
+    return isInRange(new Date(), start, end);
+  }
+
+  /**
+   * <p>判断现在的时间是否在某个时间之后的 {@code millis} 毫秒内</p>
+   *
+   * @param date 基准时间
+   * @param millis 毫秒差值
+   * @return 在该时间内返回 true, 否则返回 false
+   */
+  public static boolean isNowAfterDateIn(Date date, long millis) {
+    long diff = System.currentTimeMillis() - date.getTime();
+    return diff > 0 && diff < millis;
+  }
+
+  /**
+   * <p>判断两个日期是否是同一天</p>
+   *
+   * @param date1 日期1
+   * @param date2 日期2
+   * @return 判断结果
+   */
+  public static boolean isOneDay(Date date1, Date date2) {
+    String pattern = "yyyy-MM-dd";
+    return DateFmtUtils.dateToStr(date1, pattern).equals(DateFmtUtils.dateToStr(date2, pattern));
   }
 }
