@@ -1,6 +1,5 @@
 package com.github.codinghck.base.util.common.spring.restful.page;
 
-import javafx.scene.control.Pagination;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

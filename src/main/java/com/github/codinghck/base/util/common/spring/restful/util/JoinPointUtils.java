@@ -89,6 +89,7 @@ public class JoinPointUtils {
 
   /**
    * <p>获取切点注解</p>
+   *
    * @param jp 切点对象
    * @return 注解数组
    */
@@ -96,5 +97,17 @@ public class JoinPointUtils {
     MethodSignature signature = (MethodSignature) jp.getSignature();
     Method method = signature.getMethod();
     return method.getParameterAnnotations();
+  }
+
+  /**
+   * <p>根据切点对象获取类对象</p>
+   *
+   * @param jp 切点对象
+   * @return 类对象
+   * @throws ClassNotFoundException 找不到该类时的异常
+   */
+  public static Class<?> getClass(JoinPoint jp) throws ClassNotFoundException {
+    String classType = jp.getTarget().getClass().getName();
+    return Class.forName(classType);
   }
 }

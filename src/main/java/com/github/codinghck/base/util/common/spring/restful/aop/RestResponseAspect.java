@@ -1,11 +1,11 @@
 package com.github.codinghck.base.util.common.spring.restful.aop;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.codinghck.base.util.common.spring.restful.exception.RestException;
 import com.github.codinghck.base.util.common.spring.restful.response.RestResponse;
 import com.github.codinghck.base.util.common.spring.restful.util.RestResHandler;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONObject;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -41,7 +41,7 @@ public class RestResponseAspect {
     if (requestId != null) {
       res.setRequestId(requestId);
     }
-    return JSONObject.fromObject(res).toString();
+    return JSONObject.toJSONString(res);
   }
 
   private RestResponse proceed(ProceedingJoinPoint jp, HttpServletRequest request) {
@@ -52,7 +52,7 @@ public class RestResponseAspect {
       log.warn("rest exception handler, url: {}, e: {}, msg: {}, stackTrace: {}",
           request.getRequestURL().toString(), e, e.getMessage(), e.getStackTrace());
       res = RestResHandler.getForUnexpectErr(e.getMessage());
-      res.setTip("path: " + request.getServletPath());
+      res.setTip("path: " + request.getServletPath() + "; exception: " + e.getClass().getName());
       if (e instanceof RestException) {
         res.setCode(((RestException) e).getErrCode());
       }
