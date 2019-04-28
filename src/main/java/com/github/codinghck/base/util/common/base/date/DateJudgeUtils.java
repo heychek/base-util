@@ -2,6 +2,7 @@ package com.github.codinghck.base.util.common.base.date;
 
 import java.util.Calendar;
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author hck 2019-03-08 16:20
@@ -90,5 +91,27 @@ public class DateJudgeUtils {
       }
     }
     return WeekDay.SUNDAY;
+  }
+
+  /**
+   * <p>判断传入的日期是否是本月第一天</p>
+   *
+   * @param date 传入的日期
+   * @return 表示是否是本月第一天的布尔值
+   */
+  public static boolean isFirstDayOfMonth(Date date) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    return calendar.getActualMinimum(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH);
+  }
+
+  /**
+   * <p>判断传入的日期是否是当月的最后一天</p>
+   *
+   * @param date 传入日期
+   * @return 表示是否是当月最后一天的布尔值
+   */
+  public static boolean isLastDayOfMonth(Date date) {
+    return DateCompareUtils.isOneDay(date, DateProvider.getLastDayOfMonth(date));
   }
 }

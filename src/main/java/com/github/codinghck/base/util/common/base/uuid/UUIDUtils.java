@@ -1,4 +1,4 @@
-package com.github.codinghck.base.util.common.base.str;
+package com.github.codinghck.base.util.common.base.uuid;
 
 import java.util.UUID;
 

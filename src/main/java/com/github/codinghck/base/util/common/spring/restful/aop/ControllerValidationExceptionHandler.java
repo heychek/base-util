@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @Slf4j
 @RestControllerAdvice
+@SuppressWarnings("unused")
 public class ControllerValidationExceptionHandler {
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
