@@ -21,6 +21,7 @@ public class Num2ChineseNumConverter {
    * java.math.BigDecimal}, {@link Float}, {@link Double}, {@link Double},{@link String}, {@link
    * Byte}, {@link Short}, {@link java.math.BigInteger}, {@link Number} 之一或传入对象 如 {@link String}
    * 无法转换为相应数字, 将抛出 {@link IllegalArgumentException} 异常
+   * @return 转换结果
    */
   public static String toChineseLower(Object num) {
     return format(num, StrConst.CHINESE_NUM_LOWER, StrConst.CHINESE_NUM_UNIT_LOWER);
@@ -34,6 +35,7 @@ public class Num2ChineseNumConverter {
    * java.math.BigDecimal}, {@link Float}, {@link Double}, {@link Double},{@link String}, {@link
    * Byte}, {@link Short}, {@link java.math.BigInteger}, {@link Number} 之一或传入对象 如 {@link String}
    * 无法转换为相应数字, 将抛出 {@link IllegalArgumentException} 异常
+   * @return 转换结果
    */
   public static String toChineseUpper(Object num) {
     return format(num, StrConst.CHINESE_NUM_UPPER, StrConst.CHINESE_NUM_UNIT_UPPER);
@@ -97,6 +99,7 @@ public class Num2ChineseNumConverter {
    *
    * @param decimal 小数部分
    * @param numArray 数字大小写数组
+   * @return 格式化结果
    */
   private static String formatFractionalPart(String decimal, String[] numArray) {
     char[] val = String.valueOf(decimal).toCharArray();
